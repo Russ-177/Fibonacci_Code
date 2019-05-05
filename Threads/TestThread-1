@@ -1,0 +1,25 @@
+public class Multi {
+
+    public static void main(String[] args) {
+        Thread t1 = new Thread( new MyInterrapt());
+        t1.start();
+        t1.interrupt();
+
+    }
+}
+
+class MyInterrapt implements Runnable {
+
+    @Override
+    public void run() {
+        System.out.println(1);
+        try {
+            Thread.sleep(2000);
+            System.out.println(2);
+        } catch (InterruptedException ex) {
+            System.out.println(3);
+        }
+        System.out.println(4);
+
+    }
+}
