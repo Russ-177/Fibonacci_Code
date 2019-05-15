@@ -1,16 +1,7 @@
 public class Counter {
 
     private int count = 0;
-    
-    /*// 3 - синхронизация на целый класс
-    private Object obj = new Object();
-    private int count = 0;
-    public synchronized static void  setCount (){
-        synchronized (obj) {
-            count++;
-        }
-    }*/
-    
+        
     /*// 2 - синхронизация блока
     private Object obj = new Object();
     private int count = 0;
