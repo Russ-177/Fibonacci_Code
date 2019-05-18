@@ -1,0 +1,66 @@
+public class PingPongApp {
+
+    public static void main(String[] args){
+        PingPong pp =new PingPong();
+
+        Thread t1 = new Thread(new PingThreed(pp));
+        Thread t2 = new Thread(new PongTread(pp));
+
+        t1.start();
+        t2.start();
+
+    }
+}
+
+class PingPong {
+
+    boolean flag = true;
+
+    public synchronized void ping (){
+
+        if (flag) {
+            System.out.println("PING+");
+            flag = false;
+        }
+    }
+
+    public synchronized void pong (){
+
+        if (!flag) {
+            System.out.println("PONG-");
+            flag = true;
+        }
+    }
+}
+
+class PingThreed implements Runnable {
+
+    PingPong pingPong;
+
+    public PingThreed(PingPong pingPong) {
+        this.pingPong = pingPong;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            this.pingPong.ping();
+        }
+    }
+}
+
+class PongTread implements Runnable {
+
+    PingPong pingPong;
+
+    public PongTread(PingPong pingPong) {
+        this.pingPong = pingPong;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            this.pingPong.pong();
+        }
+    }
+}
